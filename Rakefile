@@ -9,7 +9,7 @@ AUTHOR = "maiha"
 EMAIL = "maiha@wota.jp"
 HOMEPAGE = "http://github.com/maiha/crb"
 SUMMARY = "A cucumber console that offers cucumber world enviroment on irb"
-GEM_VERSION = "0.1"
+GEM_VERSION = "0.1.1"
 
 spec = Gem::Specification.new do |s|
   s.rubyforge_project = 'asakusarb'
