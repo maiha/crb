@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+# clear ARGV for calling IRB
+
+CRB.start(ARGV.slice!(0..-1))
