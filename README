@@ -28,83 +28,83 @@ Example
 
   % cd examples/i18n/en
   % crb
-  irb(crb:3):001:0>
-         ^^^ this means a number of defined steps.
+  irb(CRB:3):001:0>
+         ^^^ This means a number of defined steps.
 
-  irb(crb:3):001:0> given "i have entered 3"
-  undefined step: "i have entered 3"
-  => #<cucumber::undefined: undefined step: "i have entered 3">
+  irb(CRB:3):001:0> Given "I have entered 3"
+  Undefined step: "I have entered 3"
+  => #<Cucumber::Undefined: Undefined step: "I have entered 3">
 
-  irb(crb:3):002:0> given "i have entered 3 into the calculator"
+  irb(CRB:3):002:0> Given "I have entered 3 into the calculator"
   => [3]
 
-  irb(crb:3):003:0> given "i have entered 5 into the calculator"
+  irb(CRB:3):003:0> Given "I have entered 5 into the calculator"
   => [3, 5]
 
-  irb(crb:3):004:0> then "i press add"
+  irb(CRB:3):004:0> Then "I press add"
   => 8
 
-  irb(crb:3):005:0> @calc
-  => #<calculator:0x7faa0a3e5218 @args=[3, 5]>
+  irb(CRB:3):005:0> @calc
+  => #<Calculator:0x7faa0a3e5218 @args=[3, 5]>
 
 
-i18n
+I18N
 ====
 
-  i18n keywords are also available.
+  I18N keywords are also available.
 
   % cd examples/i18n/ja
   % crb
-  irb(crb:3):001:0> 前提 "3 を入力"
+  irb(CRB:3):001:0> 前提 "3 を入力"
   => [3]
-  irb(crb:3):002:0> @calc
-  => #<calculator:0x7ff45ecdbc70 @args=[3]>
+  irb(CRB:3):002:0> @calc
+  => #<Calculator:0x7ff45ecdbc70 @args=[3]>
 
 
-custom
+Custom
 ======
 
   % mkdir my-project
   % crb my-project
-  irb(crb:0):001:0> given "ab"
-  undefined step: "ab"
-  => #<cucumber::undefined: undefined step: "ab">
-  irb(crb:0):002:0> given(/^(..)$/){|i| p "two chars for you! #{i}"}
+  irb(CRB:0):001:0> Given "ab"
+  Undefined step: "ab"
+  => #<Cucumber::Undefined: Undefined step: "ab">
+  irb(CRB:0):002:0> Given(/^(..)$/){|i| p "Two chars for you! #{i}"}
   => "/^(..)$/ is defined"
-  irb(crb:1):003:0> given "ab"
-  "two chars for you! ab"
+  irb(CRB:1):003:0> Given "ab"
+  "Two chars for you! ab"
 
 
-world methods
+World Methods
 =============
 
-  above crb(irb) context is a same object with cuke's world.
-  and there are following additional methods.
+  Above crb(irb) context is a same object with cuke's world.
+  And there are following additional methods.
 
-    * before : execute before hooks. returns message (string)
-    * after  : execute after  hooks. returns message (string)
-    * steps  : returns step definitions (array[rbstepdefinition])
-    * runtime: returns runtime object (crb::runtime)
-    * hooks  : returns hooks (hash[type=>array[rbhook]])
-    * rb     : returns ruby language support object (rblanguage)
+    * before : execute before hooks. returns message (String)
+    * after  : execute after  hooks. returns message (String)
+    * steps  : returns step definitions (Array[RbStepDefinition])
+    * runtime: returns runtime object (CRB::Runtime)
+    * hooks  : returns hooks (Hash[type=>Array[RbHook]])
+    * rb     : returns ruby language support object (RbLanguage)
 
 
-restricted
+Restricted
 ==========
 
-  * hooks are not called automatically because crb is free from
-    scenarios. otherwise if hooks are called in each invokes,
+  * Hooks are not called automatically because crb is free from
+    scenarios. Otherwise if hooks are called in each invokes,
     we'll never succeed to "add" operation in above calculator.
 
   * "before", "after" methods are the manual triggers for hooks.
-    and "ctl-c" is binded as "before" filter too.
+    And "Ctl-C" is binded as "before" filter too.
 
-  * to implement crb, there are many ugly codes that closely
+  * To implement CRB, there are many ugly codes that closely
     depend on cuke's internal structures like private methods
-    and instance vars. so it'll break soon after cuke's update.
+    and instance vars. So it'll break soon after cuke's update.
 
 
-environment
+Environment
 ===========
 
   Tested on ruby-1.8.7, cucumber-1.0.0
