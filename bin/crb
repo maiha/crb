@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # clear ARGV for Irb
 
+require 'rubygems'
 require 'crb'
-CRB.start(ARGV.slice!(0..-1))
+CRB::Console.execute(ARGV.slice!(0..-1)||[])

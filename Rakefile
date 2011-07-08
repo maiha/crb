@@ -1,15 +1,12 @@
 require 'rubygems'
 require 'rake/gempackagetask'
 
-#require 'merb-core'
-#require 'merb-core/tasks/merb'
-
 GEM_NAME = "crb"
 AUTHOR = "maiha"
 EMAIL = "maiha@wota.jp"
 HOMEPAGE = "http://github.com/maiha/crb"
 SUMMARY = "A cucumber console that offers cucumber world enviroment on irb"
-GEM_VERSION = "0.1.2"
+GEM_VERSION = "1.0.0"
 
 spec = Gem::Specification.new do |s|
   s.rubyforge_project = 'asakusarb'
@@ -24,8 +21,7 @@ spec = Gem::Specification.new do |s|
   s.author = AUTHOR
   s.email = EMAIL
   s.homepage = HOMEPAGE
-  s.add_dependency('cucumber', '>= 0.3.9')
-  s.add_dependency('webrat', '>= 0.4.4')
+  s.add_dependency('cucumber', '>= 1.0.0')
   s.require_path = 'lib'
   s.files = %w(MIT-LICENSE README Rakefile) + Dir.glob("{lib,spec,app,public,stubs}/**/*")
 end
