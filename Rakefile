@@ -1,53 +1,53 @@
+# encoding: utf-8
+
 require 'rubygems'
-require 'rake/gempackagetask'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
+require 'rake'
 
-GEM_NAME = "crb"
-AUTHOR = "maiha"
-EMAIL = "maiha@wota.jp"
-HOMEPAGE = "http://github.com/maiha/crb"
-SUMMARY = "A cucumber console that offers cucumber world enviroment on irb"
-GEM_VERSION = "1.0.0"
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "crb"
+  gem.homepage = "http://github.com/maiha/crb"
+  gem.license = "MIT"
+  gem.summary = "A cucumber console that offers cucumber world enviroment on irb"
+  gem.description = gem.summary
+  gem.email = "maiha@wota.jp"
+  gem.authors = ["maiha"]
+  # dependencies defined in Gemfile
+end
+Jeweler::RubygemsDotOrgTasks.new
 
-spec = Gem::Specification.new do |s|
-  s.rubyforge_project = 'asakusarb'
-  s.executables = ["crb"]
-  s.name = GEM_NAME
-  s.version = GEM_VERSION
-  s.platform = Gem::Platform::RUBY
-  s.has_rdoc = true
-  s.extra_rdoc_files = ["README", "MIT-LICENSE"]
-  s.summary = SUMMARY
-  s.description = s.summary
-  s.author = AUTHOR
-  s.email = EMAIL
-  s.homepage = HOMEPAGE
-  s.add_dependency('cucumber', '>= 1.0.0')
-  s.require_path = 'lib'
-  s.files = %w(MIT-LICENSE README Rakefile) + Dir.glob("{lib,spec,app,public,stubs}/**/*")
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
 end
 
-Rake::GemPackageTask.new(spec) do |pkg|
-  pkg.gem_spec = spec
+require 'rcov/rcovtask'
+Rcov::RcovTask.new do |test|
+  test.libs << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
+  test.rcov_opts << '--exclude "gems/*"'
 end
 
-desc "Install the gem"
-task :install do
-  Merb::RakeHelper.install(GEM_NAME, :version => GEM_VERSION)
-end
+task :default => :test
 
-desc "Uninstall the gem"
-task :uninstall do
-  Merb::RakeHelper.uninstall(GEM_NAME, :version => GEM_VERSION)
-end
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
-desc "Create a gemspec file"
-task :gemspec do
-  File.open("#{GEM_NAME}.gemspec", "w") do |file|
-    file.puts spec.to_ruby
-  end
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "crb #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end
-
-require 'spec/rake/spectask'
-#require 'merb-core/test/tasks/spectasks'
-desc 'Default: run spec examples'
-task :default => 'spec'
