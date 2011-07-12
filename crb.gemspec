@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{crb}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["maiha"]
-  s.date = %q{2011-07-10}
+  s.date = %q{2011-07-12}
   s.default_executable = %q{crb}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{A cucumber console that offers cucumber world enviroment on irb}
   s.email = %q{maiha@wota.jp}
   s.executables = ["crb"]
   s.extra_rdoc_files = [
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{A cucumber console that offers cucumber world enviroment on irb}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
